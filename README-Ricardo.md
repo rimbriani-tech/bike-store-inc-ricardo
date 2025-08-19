@@ -1,4 +1,4 @@
-# DBA Challenge 20240802
+# Bike Store Inc.
 
 
 ## Descrição
