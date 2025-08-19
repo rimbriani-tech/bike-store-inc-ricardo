@@ -57,6 +57,7 @@ INNER JOIN	orders ord ON ord.store_id = store.store_id
 INNER JOIN	order_items orditem ON orditem.order_id = ord.order_id
 INNER JOIN	products prod ON prod.product_id = orditem.product_id
 WHERE		prod.brand_id = 'SHIMANO'
+GROUP BY	store.store_name
 
 
 
@@ -71,4 +72,5 @@ SELECT	staff.staff_id,
 		staff.manager_id
 FROM	staffs staff
 WHERE	staff.staff_id NOT IN  (SELECT	staff_id
+
 								FROM	orders)
