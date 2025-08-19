@@ -66,6 +66,16 @@ INNER JOIN	products prod ON prod.product_id = orditem.product_id
 WHERE		prod.brand_id = 'SHIMANO'
 GROUP BY	store.store_name
 
+--4 - Variante
+SELECT		store.store_name, 
+			COUNT(DISTINCT orditens.order_id) vendas
+FROM		stores store
+INNER JOIN	orders ord ON ord.store_id = store.store_id
+INNER JOIN	order_items orditem ON orditem.order_id = ord.order_id
+INNER JOIN	products prod ON prod.product_id = orditem.product_id
+WHERE		prod.brand_id = 'SHIMANO'
+GROUP BY	store.store_name
+
 
 
 --5
@@ -80,4 +90,5 @@ SELECT	staff.staff_id,
 FROM	staffs staff
 WHERE	staff.staff_id NOT IN  (SELECT	staff_id
 								FROM	orders)
+
 
