@@ -41,10 +41,17 @@ SELECT		prod.product_id,
 			prod.brand_id,
 			prod.category_id,
 			prod.model_year,
-			prod.list_price
+			prod.list_price,
+			SUM(stock.quantity)
 FROM		products prod
 INNER JOIN	stocks stock ON prod.product_id = stock.product_id
-WHERE		stock.quantity = 0
+GROUP BY	prod.product_id,
+			prod.product_name,
+			prod.brand_id,
+			prod.category_id,
+			prod.model_year,
+			prod.list_price
+HAVING		SUM(stock.quantity) = 0
 
 
 
@@ -72,5 +79,5 @@ SELECT	staff.staff_id,
 		staff.manager_id
 FROM	staffs staff
 WHERE	staff.staff_id NOT IN  (SELECT	staff_id
-
 								FROM	orders)
+
